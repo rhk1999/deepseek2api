@@ -1,28 +1,18 @@
 {
   "keys": [
-    "key1",
-    "key2"
+    "123456",
+    "123456789"
   ],
   "accounts": [
     {
-      "email": "example1@example.com",
-      "password": "password1",
-      "token": ""
+      "email": "blot.c.h.exemu.h.g.b.qk@gmail.com",
+      "password": "123456789",
+      "token": "ttWhiod+9De/MfvFVkHS7o8D5CAZDcVjO6omstyKqn4UvWnkq8i13NYXUfhPietu"
     },
     {
-      "email": "example2@example.com",
-      "password": "password2",
-      "token": ""
-    },
-    {
-      "mobile": "12345678901",
-      "password": "password3",
-      "token": ""
-    },
-    {
-      "mobile": "12345678901",
-      "password": "password4",
-      "token": ""
+      "mobile": "13185942325",
+      "password": "13185942325",
+      "token": "w0pUThzBWUvB+Xti0gh1QLa7U5/QVBZt6sao2sv1wDMpRItKbFjiRLaodX1/J4L0"
     }
   ]
 }
