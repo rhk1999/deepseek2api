@@ -1,10 +1,10 @@
-name: Build and Push Docker Image
+name: Build and Push Dev Docker Image
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - dev
     paths-ignore:
       - 'README.MD'
       - 'docker-compose.yml'
@@ -39,6 +39,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Debug Semantic Release Outputs
+        run: |
+          echo "New Version: ${{ steps.semantic.outputs.new_release_version }}"
+          echo "Release Published: ${{ steps.semantic.outputs.new_release_published }}"
+
   build-and-push:
     needs: semantic-release
     runs-on: ubuntu-latest
@@ -70,6 +75,6 @@ jobs:
           push: true
           tags: |
             iidamie/deepseek2api:${{ steps.get_version.outputs.version }}
-            iidamie/deepseek2api:latest
+            iidamie/deepseek2api:dev
           platforms: linux/amd64,linux/arm64
           build-args: TARGETPLATFORM=${{ matrix.platform }}

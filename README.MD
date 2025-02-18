@@ -152,6 +152,9 @@ docker stop deepseek2api
 
 ## Vercel部署
 
+> [!NOTE]
+> Vercel免费账户的请求响应超时时间为10秒，但接口响应通常较久，可能会遇到Vercel返回的504超时错误！
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/iidamie/deepseek2api)
 
 部署完后，返回你的 Github 仓库配置 config.json
@@ -186,7 +189,13 @@ pip install -r requirements.txt
 启动服务
 
 ```shell
-python server.py
+python app.py
+```
+
+使用 nohup 启动
+
+```shell
+nohup uvicorn app:app --host 0.0.0.0 --port 5001 > uvicorn.log 2>&1 &
 ```
 
 ## 接口列表
@@ -205,7 +214,7 @@ python server.py
   "data": [
     {
       "created": 1677610602,
-      "id": "DeepSeek-R1",
+      "id": "deepseek-chat",
       "object": "model",
       "owned_by": "deepseek",
       "permission": []
@@ -219,14 +228,14 @@ python server.py
     },
     {
       "created": 1677610602,
-      "id": "DeepSeek-V3",
+      "id": "deepseek-chat-search",
       "object": "model",
       "owned_by": "deepseek",
       "permission": []
     },
     {
       "created": 1677610602,
-      "id": "deepseek-chat",
+      "id": "deepseek-reasoner-search",
       "object": "model",
       "owned_by": "deepseek",
       "permission": []
@@ -254,6 +263,8 @@ Authorization: Bearer [userToken value or keys]
     // model名称
     // 默认：deepseek-chat 或 deepseek-v3
     // 深度思考：deepseek-reasoner 或 deepseek-r1
+    // 联网搜索：deepseek-chat-search 或 deepseek-v3-search
+    // 联网搜索 + 深度思考：deepseek-reasoner-search 或 deepseek-r1-search
     "model": "deepseek-chat",
     // 多轮对话基于消息合并实现，某些场景可能导致能力下降且受单轮最大token数限制
     "messages": [
@@ -319,10 +330,10 @@ keepalive_timeout 120;
 示例:
 ```json
 "usage": {
-    "completion_tokens": 37,
-    "prompt_tokens": 1,
-    "total_tokens": 38
-  }
+  "completion_tokens": 37,
+  "prompt_tokens": 1,
+  "total_tokens": 38
+}
 ```
 
 ## Star History
